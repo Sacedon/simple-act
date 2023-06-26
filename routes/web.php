@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/items', [ItemController::class, 'store']);
     Route::get('/items/{item}', [ItemController::class, 'show']);
     Route::get('/items/search/{searchKey}', [ItemController::class, 'search']);
+    Route::post('/items/toggle/{item}', [ItemController::class, 'toggle']);
 });
 
 require __DIR__.'/auth.php';
