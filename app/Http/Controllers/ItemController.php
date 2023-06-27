@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ItemController extends Controller
 {
@@ -56,4 +57,9 @@ class ItemController extends Controller
         $item->save();
         return back();
     }
+
+    public function destroy(Item $item){
+        $item->delete();
+        return redirect('/items');
+        }
 }

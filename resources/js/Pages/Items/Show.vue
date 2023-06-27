@@ -19,9 +19,13 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow rounded py-6 flex">
                 <img :src="item.picUrl" alt="Product photo" class="aspect-square w-[40%] object-cover">
                 <div class="pl-6 w-full flex flex-col">
+                    
                     <h4 class="text-3xl mb-6">{{ item.name }}</h4>
                     <div class="p-4 bg-gray-100 flex-1">
                         {{ item.description }}
+                    </div>
+                    <div class="flex justify-end">
+                        <Link :href="'/items/' + item.id" method="delete">Delete</Link>
                     </div>
                     <div class="flex justify-between items-center">
                         <div>
@@ -45,8 +49,13 @@ import { Link, Head } from '@inertiajs/vue3'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 
 
+
+
 const prop = defineProps({
     'item': Object
 })
+
+
+
 
 </script>

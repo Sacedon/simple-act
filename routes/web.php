@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/{item}', [ItemController::class, 'show']);
     Route::get('/items/search/{searchKey}', [ItemController::class, 'search']);
     Route::post('/items/toggle/{item}', [ItemController::class, 'toggle']);
+    Route::delete('/items/{item}', [ItemController:: class, 'destroy']);
 });
 
 require __DIR__.'/auth.php';
