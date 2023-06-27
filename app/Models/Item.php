@@ -17,4 +17,8 @@ class Item extends Model
         $url = $this->pic ? asset("images/product_pics/" . $this->pic) : "https://512pixels.net/downloads/macos-wallpapers-thumbs/10-14-Night-Thumb.jpg";
         return $url;
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

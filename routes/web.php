@@ -41,7 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/{item}', [ItemController::class, 'show']);
     Route::get('/items/search/{searchKey}', [ItemController::class, 'search']);
     Route::post('/items/toggle/{item}', [ItemController::class, 'toggle']);
-    Route::delete('/items/{item}', [ItemController:: class, 'destroy']);
+
+    Route::middleware(['auth', 'admin.delete.item'])->group(function () {
+        Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';

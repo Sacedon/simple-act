@@ -47,8 +47,11 @@ class ItemController extends Controller
     }
 
     public function show(Item $item) {
+
+        $user = auth()->user();
         return inertia('Items/Show',[
-            'item' => $item
+            'item' => $item,
+            'user' => $user
         ]);
     }
 
