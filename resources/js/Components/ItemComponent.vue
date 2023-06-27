@@ -1,6 +1,7 @@
 <template>
     <div class="item-card" :class="{ 'item-card--enabled': item.enabled }" @click="openItem">
       <img :src="item.picUrl" alt="Product photo" class="aspect-square w-full object-cover mb-4">
+      
       <h4 class="text-2xl">Item: {{ item?.name }}</h4>
       <div class="text-gray-400">{{ item?.description }}</div>
       <div class="flex justify-between mt-4">
