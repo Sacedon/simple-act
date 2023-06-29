@@ -6,23 +6,21 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminAccess
+class RoleMiddleware
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, $role): Response
     {
         $user = $request->user();
 
-        if(strcmp($user->role, "admin")!=0) {
-            return back()->with('Error','Only an admin can delete an item.');
+        if(strcmp($user->role, $role)!=0) {
+            return back()->with('Error','Only an administrator can perform this action.');
         }
 
         return $next($request);
-
-
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <Head :title="'View Item | ' + item.name"></Head>
+    <Head :title="`View Item | ${item.name}`"></Head>
 
     <AuthenticatedLayout>
       <template #header>
@@ -18,7 +18,9 @@
 
       <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white shadow rounded py-6 flex">
-          <img :src="item.picUrl" alt="Product photo" class="aspect-square w-[40%] object-cover">
+          <div class="aspect-square w-[40%]">
+            <img :src="item.picUrl" alt="Product photo" class="object-cover">
+          </div>
           <div class="pl-6 w-full flex flex-col">
             <h4 class="text-3xl mb-6">{{ item.name }}</h4>
             <div class="p-4 bg-gray-100 flex-1">
@@ -26,7 +28,7 @@
             </div>
             <div class="flex justify-end mt-4">
               <Link
-                :href="'/items/' + item.id"
+                :href="`/items/` + item.id"
                 method="delete"
                 class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
               >
@@ -48,11 +50,20 @@
   </template>
 
   <script setup>
+  import { defineProps } from 'vue'
   import { Link, Head } from '@inertiajs/vue3'
   import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+  import { usePage } from '@inertiajs/vue3';
+  import { computed } from 'vue';
 
+  const page = usePage()
 
-  const prop = defineProps({
-    item: Object
+  const user = computed(() => page.props.auth.user)
+
+  const props = defineProps({
+    item: Object,
+
   })
+
+
   </script>

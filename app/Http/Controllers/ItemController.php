@@ -63,6 +63,6 @@ class ItemController extends Controller
 
     public function destroy(Item $item){
         $item->delete();
-        return redirect('/items');
+        return redirect('/items')->with('Info', 'Item has just been deleted!.');
         }
 }
